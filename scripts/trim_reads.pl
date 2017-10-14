@@ -5,6 +5,7 @@ use strict;
 use Bio::SeqIO;
 use Getopt::Long;
 use List::Util qw(max);
+use List::Util qw(min);
 my $input="";
 my $fasta="";
 my $output="";
@@ -268,10 +269,13 @@ while(<MYFILE3>){
 	my $state_num = 0;
 	my $prev1 = my $prev2 = my $prev3 = my $prev4 = my $prev5 = my $prev6 = my $avg = $min_q;
 
-	#change these next few lines for biased sequences
-	my $rand_length = $lengths[rand @lengths];
+	# change these next few lines for biased sequences 
+	# Changed for min seq length = 10
+	my $rand_length = max(10, min(length($curseq), $lengths[rand @lengths]));
 	my $rand2 = rand();
-	my $new_seq = $curseq; $rand_length = length($new_seq);#UNCOMMENT LATER: substr($curseq, 0, $rand_length);
+	my $new_seq = substr($curseq, 0, $rand_length);
+	# $rand_length = length($new_seq);
+	
 	for (my $i = 1; $i < $rand_length; $i++){ #$i=0 is already on the string, remove the -1 after
 		my $avg2 = $avg;
 		$rand_per = rand();
