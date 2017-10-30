@@ -1,10 +1,8 @@
 #!/usr/bin/env python
 
-
 from Bio import SeqIO
 from Bio.SeqRecord import SeqRecord
 import sys, csv, io, random, decimal, argparse
-
 
 # FUNC
 def interface():
