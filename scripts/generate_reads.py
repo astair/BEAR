@@ -1,8 +1,10 @@
 #!/usr/bin/env python
 
+
 from Bio import SeqIO
 from Bio.SeqRecord import SeqRecord
 import sys, csv, io, random, decimal, argparse
+
 
 # FUNC
 def interface():
@@ -117,7 +119,7 @@ if __name__ == "__main__":
 
     # Generate the reads
     if verbose:
-        count_file.write('ID\tSpecies\tLength\tSeq_abundance\tNum_reads')
+        count_file.write('ID\tSpecies\tLength\tSeq_abundance\tNum_reads\n')
 
     reads_written = 0
     for (ID, seq) in all_seqs.items():
@@ -134,7 +136,7 @@ if __name__ == "__main__":
         coverage = max(1, int(seq_div * total_reads))
 
         if verbose:
-            count_file.write('\t'.join([ID, curr_spec, str(len(seq)), str(seq_div), str(coverage)]))
+            count_file.write('\t'.join([ID, curr_spec, str(len(seq)), str(seq_div), str(coverage)]) + '\n')
 
         # Genreate reads w/ appropriate coverage
         limit = len(seq)
